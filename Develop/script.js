@@ -1,48 +1,179 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-function generatePassword() {
-  console.log("you clicked");
+// Global Variables
+// creating array of lowercase variables
+var upperCase = [
+  "A",
+  "B",
+  "C",
+  "D",
+  "E",
+  "F",
+  "G",
+  "H",
+  "I",
+  "J",
+  "K",
+  "L",
+  "M",
+  "N",
+  "O",
+  "P",
+  "Q",
+  "R",
+  "S",
+  "T",
+  "U",
+  "V",
+  "W",
+  "X",
+  "Y",
+  "Z",
+];
+// creating array of lowercase variables
+var lowerCase = [
+  "a",
+  "b",
+  "c",
+  "d",
+  "e",
+  "f",
+  "g",
+  "h",
+  "i",
+  "j",
+  "k",
+  "l",
+  "m",
+  "n",
+  "o",
+  "p",
+  "q",
+  "r",
+  "s",
+  "t",
+  "u",
+  "v",
+  "w",
+  "x",
+  "y",
+  "z",
+];
+//creating array of numbers
+var numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+//creating array of special characters
+var special = [
+  "!",
+  "#",
+  "$",
+  "%",
+  "&",
+  "(",
+  ")",
+  "*",
+  "+",
+  "-",
+  "/",
+  ":",
+  ";",
+  "=",
+  "<",
+  ">",
+  "?",
+  "@",
+  "[",
+  "]",
+  "^",
+  "_",
+  "'",
+  "{",
+  "}",
+  "~",
+];
 
+// Write password to the #password input
+function writePassword() {
+  // var password will be equal to generatePassword()
+  var password = generatePassword();
+  //var passwordText will equal HTML id, #password
+  var passwordText = document.querySelector("#password");
+  // var passwordText will equal
+  passwordText.value = password;
+}
+
+generateBtn.addEventListener("click", writePassword);
+
+function generatePassword() {
   var prompt1 = prompt(
     "Please select a password at least 8 and no more than 128 characters."
   );
 
-  var prompt2 = prompt("Will your password include lower case characters?");
-  // display to page
+  if (prompt1 < 8 || prompt1 > 128) {
+    alert("Password needs to be between 7 and 129.");
 
-  var prompt3 = prompt("Will your password include upper case characters?");
+    return null;
+  }
 
-  var prompt4 = prompt("Will your password include numeric characters?");
+  var prompt2 = confirm("Will your password include lower case characters?");
 
-  var prompt5 = prompt("Will your password include special characters?");
+  var prompt3 = confirm("Will your password include upper case characters?");
 
-  return "Please select at least one criteria prompt.";
+  var prompt4 = confirm("Will your password include numeric characters?");
+
+  var prompt5 = confirm("Will your password include special characters?");
+
+  if (
+    prompt2 == false &&
+    prompt3 == false &&
+    prompt4 == false &&
+    prompt5 == false
+  ) {
+    alert("You must select at least one character choice");
+
+    return null;
+  }
+  // slectedVariables has one random value from each of the chosen variable types
+  var selectedVariables = [];
+  var randomGen = [];
+  var passwordArray = [];
+
+  //doing math.random on the
+  if (prompt2 == true) {
+    selectedVariables.push(
+      lowerCase[Math.floor(Math.random() * lowerCase.length)]
+    );
+    console.log(prompt2);
+    randomGen = randomGen.concat(lowerCase);
+  }
+  if (prompt3 == true) {
+    selectedVariables.push(
+      upperCase[Math.floor(Math.random() * upperCase.length)]
+    );
+    console.log(prompt3);
+    randomGen = randomGen.concat(upperCase);
+  }
+  if (prompt4 == true) {
+    selectedVariables.push(numbers[Math.floor(Math.random() * numbers.length)]);
+    console.log(prompt4);
+    randomGen = randomGen.concat(numbers);
+  }
+
+  if (prompt5 == true) {
+    selectedVariables.push(special[Math.floor(Math.random() * special.length)]);
+    console.log(prompt5);
+    randomGen = randomGen.concat(special);
+  }
+
+  for (i = 0; i < prompt1; i++) {
+    passwordArray.push(randomGen[Math.floor(Math.random() * randomGen.length)]);
+    console.log("Password: " + passwordArray);
+  }
+  //displays amount of variables depending on selected length
+  for (var a = 0; a < selectedVariables.length; a++) {
+    passwordArray[a] = selectedVariables[a];
+    console.log(passwordArray);
+  }
+
+  return passwordArray.join("");
 }
-
-// Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-
-  console.log(password);
-
-  passwordText.value = password;
-}
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
-
-// function generatePassword() {
-//   // prompt user for lenght
-//   var input = prompt(
-//     "Please select a password at least 8 and no more than 128 characters."
-//   );
-//   if input > 7 && < 129
-
-// prompt user to confirm character choices
-// generate the password using user input
-// return the generated password
-
-//   return password;
-// }
