@@ -1,7 +1,7 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-// Global Variables
+// global variables
 // creating array of lowercase variables
 var upperCase = [
   "A",
@@ -94,16 +94,14 @@ var special = [
 
 // Write password to the #password input
 function writePassword() {
-  // var password will be equal to generatePassword()
   var password = generatePassword();
-  //var passwordText will equal HTML id, #password
   var passwordText = document.querySelector("#password");
-  // var passwordText will equal
   passwordText.value = password;
 }
 
 generateBtn.addEventListener("click", writePassword);
 
+// creating function generate password that will show the prompts
 function generatePassword() {
   var prompt1 = prompt(
     "Please select a password at least 8 and no more than 128 characters."
@@ -124,10 +122,10 @@ function generatePassword() {
   var prompt5 = confirm("Will your password include special characters?");
 
   if (
-    prompt2 == false &&
-    prompt3 == false &&
-    prompt4 == false &&
-    prompt5 == false
+    prompt2 === false &&
+    prompt3 === false &&
+    prompt4 === false &&
+    prompt5 === false
   ) {
     alert("You must select at least one character choice");
 
@@ -138,28 +136,28 @@ function generatePassword() {
   var randomGen = [];
   var passwordArray = [];
 
-  //doing math.random on the
-  if (prompt2 == true) {
+  //doing math.random on the lenth of the alphabet
+  if (prompt2 === true) {
     selectedVariables.push(
       lowerCase[Math.floor(Math.random() * lowerCase.length)]
     );
     console.log(prompt2);
     randomGen = randomGen.concat(lowerCase);
   }
-  if (prompt3 == true) {
+  if (prompt3 === true) {
     selectedVariables.push(
       upperCase[Math.floor(Math.random() * upperCase.length)]
     );
     console.log(prompt3);
     randomGen = randomGen.concat(upperCase);
   }
-  if (prompt4 == true) {
+  if (prompt4 === true) {
     selectedVariables.push(numbers[Math.floor(Math.random() * numbers.length)]);
     console.log(prompt4);
     randomGen = randomGen.concat(numbers);
   }
 
-  if (prompt5 == true) {
+  if (prompt5 === true) {
     selectedVariables.push(special[Math.floor(Math.random() * special.length)]);
     console.log(prompt5);
     randomGen = randomGen.concat(special);
